@@ -6,17 +6,16 @@ class Answer {
         StringBuilder stringBuilder = new StringBuilder(QUERY);
         String[] parts = PARAMS.split("[,{}]");
         String[] keyValue;
-        String key;
-        String value;
         boolean hasParams = false;
         for (String item: parts) {
             keyValue = item.split(":");
             if (keyValue.length == 2 && !keyValue[1].equals("\"null\"")) {
-                key = keyValue[0].trim().replace("\"", "");
-                value = keyValue[1].trim().replace("\"", "");
                 if (hasParams) stringBuilder.append(" and ");
                 else hasParams = true;
-                stringBuilder.append(key + "='" + value + "'" );
+                stringBuilder.append(keyValue[0].trim().replace("\"", ""));
+                stringBuilder.append("='");
+                stringBuilder.append(keyValue[1].trim().replace("\"", ""));
+                stringBuilder.append("'");
             }
         }
         return stringBuilder;
