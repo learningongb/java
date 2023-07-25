@@ -15,7 +15,15 @@ class BubbleSort {
     private static FileWriter fileWriter;
 
     BubbleSort() {
-        log = new File("log.txt");
+        assignFile("log.txt");
+    }
+
+    BubbleSort(String fileName) {
+        assignFile(fileName);
+    }
+
+    private static void assignFile(String fileName) {
+        log = new File(fileName);
         try {
             fileWriter = new FileWriter(log);
         }
@@ -26,7 +34,7 @@ class BubbleSort {
 
     /**
      * @apiNote Сортировка пузырьком
-     * @param mas
+     * @param mas массив
      */
     public static void sort(int[] mas) {
 
@@ -78,7 +86,7 @@ class BubbleSort {
 
 public class Task2 {
     public static void main(String[] args) {
-        int[] arr = {};
+        int[] arr;
 
         if (args.length == 0) {
             // При отправке кода на Выполнение, вы можете варьировать эти параметры
